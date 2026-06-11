@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  back:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: soccer_cleat_back
+    ports:
+      - "8000:8000"
+    networks:
+      - soccer_network
+    restart: always
+
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: soccer_cleat_front
+    ports:
+      - "8501:8501"
+    environment:
+      - BACKEND_URL=http://back:8000
+    depends_on:
+      - back
+    networks:
+      - soccer_network
+    restart: always
+
+networks:
+  soccer_network:
+    driver: bridge
