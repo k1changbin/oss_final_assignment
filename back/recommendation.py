@@ -12,9 +12,13 @@ def parse_price(price_str: str) -> int:
     """
     if not price_str or "원" not in price_str:
         return -1
-    digits = re.sub(r'[^\d]', '', price_str)
-    if digits:
-        return int(digits)
+    
+    # '약 XXX,XXX원' 혹은 'XXX,XXX원' 형식에서 가격 부분 숫자만 매칭 추출
+    match = re.search(r'([\d,]+)\s*원', price_str)
+    if match:
+        digits = re.sub(r'[^\d]', '', match.group(1))
+        if digits:
+            return int(digits)
     return -1
 
 
