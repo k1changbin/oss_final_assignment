@@ -11,7 +11,7 @@ BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")
 # 외부 파일로부터 퀴즈 데이터 가져오기
 from quiz_data import QUIZ_DATA
 
-# --- 세션 상태 초기화 ---
+# 세션 상태 초기화
 if "page" not in st.session_state:
     st.session_state.page = "main"
 if "current_q" not in st.session_state:
@@ -19,12 +19,10 @@ if "current_q" not in st.session_state:
 if "answers" not in st.session_state:
     st.session_state.answers = {}
 
-# --- 상단 레이아웃 ---
+# 상단 레이아웃
 st.title("축구화 추천 프로그램")
 st.text("학번: 2023204035 | 이름: 권창빈")
 st.divider()
-
-# --- 메인 콘텐츠 및 화면 전환 로직 ---
 
 # 메인 화면
 if st.session_state.page == "main":
@@ -50,7 +48,7 @@ elif st.session_state.page == "quiz":
     total_q = len(QUIZ_DATA)
     current_q = st.session_state.current_q
     
-    # --- 사이드바 실시간 분석 트래킹 ---
+    # 사이드바 실시간 분석 트래킹
     with st.sidebar:
         st.header("실시간 입력 상태")
         st.write("---")
@@ -69,7 +67,7 @@ elif st.session_state.page == "quiz":
             else:
                 st.write(f"- **{cat_ko}**: 대기 중")
 
-    # --- 메인 퀴즈 인터페이스 ---
+    # 메인 퀴즈
     st.write(f"**문항 {current_q + 1} / {total_q}**")
     st.progress((current_q + 1) / total_q)
     st.divider()
@@ -163,11 +161,9 @@ elif st.session_state.page == "result":
                     user_type = res_data["user_type"]
                     user_type_desc = res_data["user_type_desc"]
                     
-                    # 상단 섹션: 나의 대표 스타일 분석 결과
                     st.write(f"### 메인 플레이 스타일: {user_type}")
                     st.write(user_type_desc)
                     
-                    # 한국어 번역용 맵
                     width_map = {"narrow": "칼발 (좁음)", "normal": "보통 발볼", "wide": "넓은 발볼"}
                     weight_map = {"light": "초경량 선호", "heavy": "묵직함 선호", "neutral": "상관없음 (보통)"}
                     ground_map = {"FG": "천연 잔디", "AG": "인조 잔디", "TF": "풋살장"}
@@ -182,7 +178,6 @@ elif st.session_state.page == "result":
                         st.write(f"- **예산 범위**: {budget_map.get(user_budget)}")
                     st.write("---")
                     
-                    # 브랜드별 Tab 구성
                     st.write("### 주요 브랜드별 최적 매칭 라인업")
                     
                     # 브랜드 탭 구성 (Nike, Adidas, Puma)

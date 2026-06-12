@@ -27,13 +27,13 @@ def calculate_score(user_data: Dict[str, Any], cleat_info: Dict[str, Any], prior
     """
     score = 0
     
-    # 1. 플레이스타일/우선가치 매칭 (최대 40점)
+    # 플레이스타일/우선가치 매칭 (최대 40점)
     if user_data["priority"] == priority_key:
         score += 40
     else:
         score += 10
         
-    # 2. 발볼 너비 매칭 (최대 40점)
+    # 발볼 너비 매칭 (최대 40점)
     fit = cleat_info["fit"]
     u_width = user_data["foot_width"]
     
@@ -49,7 +49,7 @@ def calculate_score(user_data: Dict[str, Any], cleat_info: Dict[str, Any], prior
     else: # narrow <-> wide 충돌 상황 (일반)
         score += 10
         
-    # 3. 무게 매칭 (최대 20점)
+    # 무게 매칭 (최대 20점)
     c_weight = cleat_info["weight"]
     u_weight = user_data["weight"]
     
@@ -60,10 +60,10 @@ def calculate_score(user_data: Dict[str, Any], cleat_info: Dict[str, Any], prior
         # 정확히 일치 (light-light, heavy-heavy)
         score += 20
     elif (u_weight == "light" and c_weight == "normal") or (u_weight == "heavy" and c_weight == "normal"):
-        # 인접 단계 (light normal, heavy normal)
+        # 인접 단계 (light-normal, heavy-normal)
         score += 12
     else:
-        # 반대 극단 (light heavy)
+        # 반대 극단 (light-heavy)
         score += 5
         
     # 페널티 감점 적용
@@ -137,7 +137,7 @@ def get_recommendations_by_brand(user_data: Dict[str, Any]) -> Dict[str, Any]:
                 if user_ground in outsoles[grade_key]:
                     available_grades[grade_label] = outsoles[grade_key][user_ground]
                 else:
-                    # 타 구장 스펙 호환/우회 검색 (주로 Puma FG/AG → MG 대체에 해당)
+                    # 타 구장 스펙 호환/우회 검색 (Puma FG/AG -> MG 대체)
                     fallback_found = False
                     for alt_ground in ground_fallback_order.get(user_ground, []):
                         if alt_ground in outsoles[grade_key]:

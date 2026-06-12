@@ -10,6 +10,7 @@
 - **Deployment**: Docker Compose ([docker-compose.yml](docker-compose.yml))
 
 ---
+
 ## 아키텍처 및 시스템 흐름
 ```mermaid
 graph LR
@@ -20,6 +21,7 @@ graph LR
     Streamlit --> Display[매칭 결과 시각화 및 분석 보고]
 ```
 ---
+
 ## 추천 데이터베이스 수록 제품군
 
 본 프로젝트의 축구화 데이터는 각 브랜드 공식 홈페이지, KREAM, Crazy 11 등의 사이트를 참고하여 구성하였으며, 가격 정보는 공식 사이트의 정가를 기준으로 작성되었습니다.
