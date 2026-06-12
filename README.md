@@ -1,7 +1,7 @@
 # 축구화 추천 프로그램 
 
 본 프로젝트는 사용자의 플레이 스타일, 발볼 너비, 선호 무게감, 구장 환경, 예산 범위 등 5가지 핵심 요소를 종합 분석하여 가장 적합한 축구화 모델을 브랜드별로 추천하는 시스템입니다. 
-**Streamlit(프론트엔드)**과 **FastAPI(백엔드)**가 REST API로 통신하며, **Docker Compose**를 통해 각 서비스가 독립된 컨테이너 환경에서 유기적으로 실행됩니다.
+Streamlit(프론트엔드)과 FastAPI(백엔드)가 REST API로 통신하며, **Docker Compose**를 통해 각 서비스가 독립된 컨테이너 환경에서 유기적으로 실행됩니다.
 
 - **Front-end**: Streamlit ([front/app.py](front/app.py))
   - **접속 주소**: `http://<EC2의 퍼블릭 IP>:8501`
